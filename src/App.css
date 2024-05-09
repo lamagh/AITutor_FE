@@ -1,0 +1,236 @@
+html,
+body {
+  background-color: #f6f6f6;
+  font-family: "Roboto", sans-serif;
+}
+
+.text-right {
+  text-align: right;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+.ml-1 {
+  margin-left: 1em;
+}
+
+.App {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content {
+  padding: 0;
+  overflow-y: scroll;
+  float: left;
+  width: calc(100% - 80px);
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.side-menu {
+  position: relative;
+  width: 80px;
+  background-color: #0078E6;
+  height: 100vh;
+  float: left;
+}
+
+.side-menu .menu-arrow {
+  position: absolute;
+  right: -12px;
+  background: #05BC86;
+  border: 0;
+  border-radius: 50%;
+  height: 28px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 43px;
+}
+
+.side-menu ul {
+  margin-top: 100px;
+  padding: 0;
+  list-style: none;
+  padding-left: 17px;
+}
+
+.side-menu .closed li {
+  width: 43px;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.side-menu .active {
+  background-color: #EEF7FF;
+}
+
+.dashboard .title-section {
+  height: 120px;
+  background-color: white;
+  align-items: center;
+  padding: 0 35px;
+}
+
+.dashboard .title-section h1 {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
+.counter-box {
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0 3px 8px #2222223D;
+  border-radius: 15px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.counter-box-sm {
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0 3px 8px #2222223D;
+  border-radius: 15px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.graph-box {
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0 3px 8px #2222223D;
+  border-radius: 15px;
+  padding: 27px;
+}
+
+.dashboard .cards {
+  padding: 0 22px 44px 22px;
+}
+
+
+.counter-icon.greenBG {
+  background-color: #E7F9F4;
+}
+
+.counter-icon.blueBG {
+  background-color: #EEF7FF;
+}
+
+.counter-info {
+  float: left;
+  margin-left: 12px;
+}
+
+.lg .counter-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+}
+
+
+.lg .counter-icon img {
+  padding: 8px;
+  width: 80%;
+}
+
+.lg .counter-info h5 {
+  font-size: 16px;
+  color: #727272;
+  margin-bottom: 0;
+}
+
+.lg .counter-info p {
+  margin-bottom: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.m .counter-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+}
+
+.m .counter-icon img {
+  padding: 8px;
+  width: 75%;
+}
+
+.m .counter-info h5 {
+  font-size: 12px;
+  color: #727272;
+  margin-bottom: 0;
+}
+
+.m .counter-info p {
+  margin-bottom: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.filter-section {
+  padding: 22px;
+}
+
+.filter-section .filter-body {
+  background-color: white;
+  box-shadow: 0 3px 8px #2222223D;
+  border-radius: 15px;
+  height: 86px;
+  display: flex;
+}
+
+.filter-section .filter-body .row {
+  width: 100%;
+}
+
+.filter-section .filter-body h2 {
+  font-size: 26px;
+  margin-left: 15px;
+}
+
+.cards h3 {
+  font-size: 24px;
+  margin-bottom: 0;
+}
+
+.user-profile {
+  background-color: transparent;
+  box-shadow: none;
+  border: 0;
+  width: 100%;
+  padding: 0;
+}
+
+.btn-select{
+  width: 173px;
+  height: 36px;
+  text-align: left;
+  color: #0078E6;
+  background-color: #EEF7FF;
+  border: 0;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 0 15px;
+}
+
+.btn-select img{
+  margin-right: 8px;
+}
