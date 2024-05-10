@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
-const GradeActivityCount = () => {
+const GradeActivityCount = (props) => {
 
     const [gradeNumbers, setGradeNumbers] = useState([])
     const [gradeNumbersLabels, setGradeNumbersLabels] = useState([])
@@ -10,7 +10,7 @@ const GradeActivityCount = () => {
     const getGradeNumbers = () => {
         var config = {
             method: "get",
-            url: process.env.REACT_APP_API_URL + "Dashboard/GetGradeNumbers",
+            url: process.env.REACT_APP_API_URL + "Dashboard/GetGradeNumbers/" + props.parameters,
             headers: {
                 "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
             },
@@ -79,7 +79,7 @@ const GradeActivityCount = () => {
 
     useEffect(() => {
         getGradeNumbers()
-    },[])
+    },[props.parameters])
 
     return (
         <>

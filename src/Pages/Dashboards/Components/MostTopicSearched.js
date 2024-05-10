@@ -2,7 +2,7 @@ import ReactApexChart from "react-apexcharts";
 import subjectIcon from "../../../images/Select/subject.png"
 import axios from "axios";
 import { useEffect, useState } from "react";
-const MostTopicSearched = () => {
+const MostTopicSearched = (props) => {
 
     const [promptCategories, setPromptCategories] = useState([])
     const [promptCategoriesLabel, setPromptCategoriesLabel] = useState([])
@@ -10,7 +10,7 @@ const MostTopicSearched = () => {
     const getPromptCategories = () => {
         var config = {
             method: "get",
-            url: process.env.REACT_APP_API_URL + "Dashboard/GetPromptCategories",
+            url: process.env.REACT_APP_API_URL + "Dashboard/GetPromptCategories/" + props.parameters,
             headers: {
                 "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
             },
@@ -81,7 +81,7 @@ const MostTopicSearched = () => {
 
     useEffect(() => {
         getPromptCategories()
-    },[])
+    },[props.parameters])
 
     return (
         <>

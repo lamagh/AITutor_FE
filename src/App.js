@@ -40,10 +40,45 @@ function App() {
     "distinctLoginCount": 0
   })
 
+  const [parameters, setParameter] = useState("")
+  const [selectedDistrict, setSelectedDistrict] = useState(0)
+  const [selectedSchool, setSelectedSchool] = useState(0)
+  const [selectedSchoolType, setSchoolType] = useState(0)
+  const applyFilter = () => {
+    var param = ""
+    if (selectedDistrict != 0){
+      if (param == ""){
+        param = "?Emirates=" + selectedDistrict
+      }
+      else{
+        param = param + "&Emirates=" + selectedDistrict
+      }
+    }
+    if (selectedSchool != 0) {
+      if (param == "") {
+        param = "?SchoolId=" + selectedSchool
+      }
+      else {
+        param = param +  "&SchoolId=" + selectedSchool
+      }
+    }
+    if (selectedSchoolType != 0) {
+      if (param == "") {
+        param = "?SchoolType=" + selectedSchoolType
+      }
+      else {
+        param = param + "&SchoolType=" + selectedSchoolType
+      }
+    }
+
+    setParameter(param)
+  }
+
+
   const getHeaderNumbers = () => {
     var config = {
       method: "get",
-      url: process.env.REACT_APP_API_URL + "Dashboard/GetHeaderNumbers",
+      url: process.env.REACT_APP_API_URL + "Dashboard/GetHeaderNumbers/" + parameters,
       headers: {
         "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
         // Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -60,7 +95,7 @@ function App() {
   const getCountries = () => {
     var config = {
       method: "get",
-      url: "http://aitutorapis.ctsdemo.ae/api/Dashboard/GetEmiratesStates",
+      url: process.env.REACT_APP_API_URL + "Dashboard/GetEmiratesStates/" + parameters,
       headers: {
         "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
         // Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -76,7 +111,7 @@ function App() {
   const getSchools = () => {
     var config = {
       method: "get",
-      url: "http://aitutorapis.ctsdemo.ae/api/Dashboard/GetSchools",
+      url: process.env.REACT_APP_API_URL + "Dashboard/GetSchools/" + parameters,
       headers: {
         "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
         // Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -92,7 +127,7 @@ function App() {
   const getSchoolType = () => {
     var config = {
       method: "get",
-      url: "http://aitutorapis.ctsdemo.ae/api/Dashboard/GetSchoolTypes",
+      url: process.env.REACT_APP_API_URL + "Dashboard/GetSchoolTypes/" + parameters,
       headers: {
         "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
         // Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -105,12 +140,14 @@ function App() {
     });
   }
 
+
+
   useEffect(() => {
     getCountries();
     getSchoolType();
-    getSchools(); 
+    getSchools();
     getHeaderNumbers();
-  },[])
+  }, [parameters])
 
   return (
     <div className="App">
@@ -125,7 +162,7 @@ function App() {
           <div className="col-md-5 text-right">
             <div className='row align-items-center'>
               <div className='col-md-8 search-bar'>
-                <img src={searchIcon}/>
+                <img src={searchIcon} />
                 <input className='form-control form-control-sm' placeholder='Search' />
               </div>
               <div className='col-md-1 text-center'>
@@ -151,8 +188,8 @@ function App() {
                 <div className='row'>
                   <div className='col-md-3 p-relative'>
                     <img src={districts} className='filter-image-select' />
-                    <select className='filter-select'>
-                      <option>Emirates</option>
+                    <select className='filter-select' onChange={(e) => setSelectedDistrict(e.target.value)}>
+                      <option value={0}>Emirates</option>
                       {countries.map((o) => (
                         <option value={o.value}>{o.label}</option>
                       ))}
@@ -160,8 +197,8 @@ function App() {
                   </div>
                   <div className='col-md-4 p-relative'>
                     <img src={school} className='filter-image-select' />
-                    <select className='filter-select'>
-                      <option>School Name</option>
+                    <select className='filter-select' onChange={(e) => setSelectedSchool(e.target.value)}>
+                      <option value={0}>School Name</option>
                       {schools.map((o) => (
                         <option value={o.value}>{o.label}</option>
                       ))}
@@ -169,15 +206,15 @@ function App() {
                   </div>
                   <div className='col-md-3 p-relative'>
                     <img src={school} className='filter-image-select' />
-                    <select className='filter-select'>
-                      <option>School Type</option>
+                    <select className='filter-select' onChange={(e) => setSchoolType(e.target.value)}>
+                      <option value={0}>School Type</option>
                       {schoolTypes.map((o) => (
                         <option value={o.value}>{o.label}</option>
                       ))}
                     </select>
                   </div>
                   <div className='col-md-2'>
-                    <button className='btn-filter'>
+                    <button className='btn-filter' onClick={() => applyFilter()}>
                       Apply Filter
                     </button>
                   </div>
@@ -185,7 +222,7 @@ function App() {
               </div>
               <div className='col-md-2 text-right'>
                 <button className='date-filter'>
-                  <img src={dateFilterIcon}/>
+                  <img src={dateFilterIcon} />
                   <span>This Month</span>
                   <img src={dateArrowDown} />
                 </button>
@@ -281,7 +318,7 @@ function App() {
           </div>
           <div className="col-md-6 mb-3 ">
             <div className='graph-box'>
-              <CountSessionByDate />
+              <CountSessionByDate parameters={parameters} />
             </div>
           </div>
           <div className='col-md-6 mb-3 p-relative'>
@@ -298,23 +335,23 @@ function App() {
             </div>
             <div className='graph-box mt-4'>
               {tab == 1 ? (
-                <GradeActivityPercentage />
+                <GradeActivityPercentage parameters={parameters} />
               ) : (
-                <GradeActivityCount />
+                <GradeActivityCount parameters={parameters} />
               )}
             </div>
           </div>
           <div className='col-md-6 mb-3'>
             <div className='graph-box mb-3'>
-              <MostTopicSearched />
+              <MostTopicSearched parameters={parameters} />
             </div>
             <div className='graph-box'>
-              <AITutorResponses />
+              <AITutorResponses parameters={parameters} />
             </div>
           </div>
           <div className='col-md-6 mb-3'>
             <div className='graph-box'>
-              <StudentFeedback />
+              <StudentFeedback parameters={parameters} />
             </div>
           </div>
         </div>

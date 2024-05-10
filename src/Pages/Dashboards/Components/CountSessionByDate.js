@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
-const CountSessionByDate = () => {
+const CountSessionByDate = (props) => {
     const [loginCount, setLoginCount] = useState([])
     const getLoginCount = () => {
         var config = {
             method: "get",
-            url: process.env.REACT_APP_API_URL + "Dashboard/GetLoginCount",
+            url: process.env.REACT_APP_API_URL + "Dashboard/GetLoginCount/" + props.parameters,
             headers: {
                 "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
             },
@@ -55,7 +55,7 @@ const CountSessionByDate = () => {
 
         useEffect(() => {
             getLoginCount();
-        },[])
+        },[props.parameters])
     return (
         <>
             <h3>Count of sessions by Date</h3>

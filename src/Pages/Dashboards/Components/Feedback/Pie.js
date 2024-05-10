@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
-const Pie = () => {
+const Pie = (props) => {
     const [stars, setStars] = useState([])
     const series = [44, 55, 41, 17, 15];
 
@@ -14,7 +14,7 @@ const Pie = () => {
     const getStars = () => {
         var config = {
             method: "get",
-            url: process.env.REACT_APP_API_URL + "Dashboard/GetStarRating",
+            url: process.env.REACT_APP_API_URL + "Dashboard/GetStarRating/" + props.parameters,
             headers: {
                 "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
                 // Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -29,7 +29,7 @@ const Pie = () => {
 
     useEffect(() => {
         getStars()
-    }, [])
+    }, [props.parameters])
     return (<>
         <ReactApexChart
             type="donut"

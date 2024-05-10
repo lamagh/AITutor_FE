@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
-const Bars1 = () => {
+const Bars1 = (props) => {
     const [recomendationNumbers, setRecomendationNumbers] =useState([])
     const series = [{
         name: '1',
@@ -24,7 +24,7 @@ const Bars1 = () => {
     const getRecomendationNumbers = () => {
         var config = {
             method: "get",
-            url: process.env.REACT_APP_API_URL + "Dashboard/GetRecomendationNumbers",
+            url: process.env.REACT_APP_API_URL + "Dashboard/GetRecomendationNumbers/" + props.parameters,
             headers: {
                 "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
             },
@@ -80,7 +80,7 @@ const Bars1 = () => {
 
     useEffect(() => {
         getRecomendationNumbers();
-    },[])
+    },[props.parameters])
     return (
         <>
             <ReactApexChart
