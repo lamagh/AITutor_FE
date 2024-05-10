@@ -16,14 +16,14 @@ const StudentFeedback = (props) => {
                     </button>
                 </div>
             </div>
-            <div className='row'>
+            <div className='row feedback'>
                 <div className='col-md-12 mb-5'>
                     <h5>How user-friendly is the AI Tutor platform?</h5>
                     <p>(1 being not user-friendly at all and 5 being extremely user-friendly)</p>
                     <Bars parameters={props.parameters}/>
                 </div>
                 <div className='col-md-12 mb-5'>
-                    <h5>Have AI Tutor helped the student improve their grades?</h5>
+                    <h5>Has AI Tutor helped students improve their grades</h5>
                     <Pie parameters={props.parameters}  />
                 </div>
                 <div className='col-md-12'>
