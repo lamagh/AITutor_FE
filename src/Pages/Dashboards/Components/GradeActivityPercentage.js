@@ -1,9 +1,39 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 const GradeActivityPercentage = () => {
+
+    const [gradeNumbers, setGradeNumbers] = useState([])
+    const [gradeNumbersLabels, setGradeNumbersLabels] = useState([])
+    const [gradeNumbersValues, setGradeNumbersValues] = useState([])
+    const getGradeNumbers = () => {
+        var config = {
+            method: "get",
+            url: process.env.REACT_APP_API_URL + "Dashboard/GetGradeNumbers",
+            headers: {
+                "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
+            },
+        };
+        axios(config).then(function (response) {
+            if (response.status == 200) {
+                setGradeNumbers(response.data);
+
+                var labels = []
+                var values = []
+                response.data.forEach(element => {
+                    labels.push(element.label)
+                    values.push(element.percentage)
+                });
+                setGradeNumbersLabels(labels)
+                setGradeNumbersValues(values)
+            }
+        });
+    }
+
     const series = [{
         name: '',
-        data: [44, 55, 57, 56, 61, 58]
+        data: gradeNumbersValues
     }];
 
     const options = {
@@ -28,7 +58,7 @@ const GradeActivityPercentage = () => {
             colors: ['transparent']
         },
         xaxis: {
-            categories: ['Garde 12', 'Garde 10', 'Garde 9', 'Garde 8', 'Garde 5', 'Garde 6'],
+            categories: gradeNumbersLabels,
         },
         yaxis: {
             show: false
@@ -44,6 +74,10 @@ const GradeActivityPercentage = () => {
             }
         },
     };
+
+    useEffect(() => {
+        getGradeNumbers();
+    },[])
 
     return (
         <>

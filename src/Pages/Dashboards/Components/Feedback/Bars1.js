@@ -2,47 +2,41 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
-const GradeActivityCount = () => {
+const Bars1 = () => {
+    const [recomendationNumbers, setRecomendationNumbers] =useState([])
+    const series = [{
+        name: '1',
+        data: recomendationNumbers.recomendFriend
+    }, {
+        name: '2',
+        data: recomendationNumbers.recomendStudents
+    }, {
+        name: '3',
+        data: recomendationNumbers.imporoveGrades
+    }, {
+        name: '4',
+        data: recomendationNumbers.enjoyable
+    }, {
+        name: '5',
+        data: recomendationNumbers.exceed
+    }];
 
-    const [gradeNumbers, setGradeNumbers] = useState([])
-    const [gradeNumbersLabels, setGradeNumbersLabels] = useState([])
-    const [gradeNumbersValues, setGradeNumbersValues] = useState([])
-    const getGradeNumbers = () => {
+    const getRecomendationNumbers = () => {
         var config = {
             method: "get",
-            url: process.env.REACT_APP_API_URL + "Dashboard/GetGradeNumbers",
+            url: process.env.REACT_APP_API_URL + "Dashboard/GetRecomendationNumbers",
             headers: {
                 "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
             },
         };
         axios(config).then(function (response) {
             if (response.status == 200) {
-                setGradeNumbers(response.data);
-                
-                var labels = []
-                var values = []
-                response.data.forEach(element => {
-                    labels.push(element.label)
-                    values.push(element.value)
-                });
-                setGradeNumbersLabels(labels)
-                setGradeNumbersValues(values)
+                setRecomendationNumbers(response.data);
             }
         });
     }
 
-
-    const series = [{
-        name: '',
-        data: gradeNumbersValues
-    }];
-
     const options = {
-        chart: {
-            toolbar: {
-                show: false,
-            },
-        },
         plotOptions: {
             bar: {
                 horizontal: false,
@@ -59,14 +53,15 @@ const GradeActivityCount = () => {
             colors: ['transparent']
         },
         xaxis: {
-            categories: gradeNumbersLabels,
+            categories: ['To a friend', 'Resource for Students', 'Improve grades', 'Enjoyable', 'Expectations Exceeded'],
         },
         yaxis: {
-            show: false
+            title: {
+                text: ''
+            }
         },
         fill: {
-            opacity: 1,
-            colors: ["#616161"]
+            opacity: 1
         },
         tooltip: {
             y: {
@@ -75,22 +70,27 @@ const GradeActivityCount = () => {
                 }
             }
         },
-    };
+        colors: ["#A31818", "#EE7272", "#616161", "#0078E6", "#05BC86"],
+        legend: {
+            show: true,
+            position: "bottom",
+            offsetY: 0,
+        },
+    }
 
     useEffect(() => {
-        getGradeNumbers()
+        getRecomendationNumbers();
     },[])
-
     return (
         <>
             <ReactApexChart
                 type="bar"
                 options={options}
                 series={series}
-                height={350}
+                height={380}
             />
         </>
     );
 }
 
-export default GradeActivityCount;
+export default Bars1;

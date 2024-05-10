@@ -5,9 +5,13 @@ const AITutorResponses = () => {
     const series = [44, 55];
 
     var options = {
+        chart:{
+            parentHeightOffset: 0,
+        },
         legend: {
             show: true,
-            position:"bottom"
+            position: "bottom",
+            offsetY: -140,
         },
         plotOptions: {
             pie: {
@@ -18,7 +22,8 @@ const AITutorResponses = () => {
         },
         grid: {
             show: false
-        }
+        },
+        labels: ['Effectiveness', 'Accuracy']
     }
     return (
 
@@ -28,7 +33,7 @@ const AITutorResponses = () => {
                 type="donut"
                 options={options}
                 series={series}
-                height={250}
+                height={480}
             />
         </>
     );

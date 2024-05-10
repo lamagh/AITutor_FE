@@ -219,7 +219,7 @@ h2 {
   padding: 0;
 }
 
-.btn-select{
+.btn-select {
   width: 173px;
   height: 36px;
   text-align: left;
@@ -231,6 +231,101 @@ h2 {
   padding: 0 15px;
 }
 
-.btn-select img{
+.btn-select img {
   margin-right: 8px;
+}
+
+.filter-select {
+  background-color: #F2F2F2;
+  width: 100%;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px 18px 10px 34px;
+  height: 48px;
+}
+
+.btn-filter {
+  background-color: #0078E6;
+  color: white;
+  border: 0;
+  height: 48px;
+  border-radius: 5px;
+  padding: 13px;
+}
+
+.filter-image-select {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+}
+
+.p-relative {
+  position: relative;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+
+.graph-box-tabs {
+  position: absolute;
+  top: 0;
+  width: calc(100% - 21px);
+
+}
+
+.graph-box-tabs .tab {
+  height: 45px;
+  line-height: 45px;
+  border-radius: 20px 20px 0 0;
+  background-color: #EBEBEB;
+  padding-left: 30px;
+
+}
+
+.graph-box-tabs .tab.active {
+  background-color: white;
+  font-weight: 500;
+}
+
+.graph-box-tabs .tab:hover {
+  cursor: pointer;
+}
+
+.search-bar {
+  position: relative;
+
+}
+
+.search-bar img {
+  position: absolute;
+  right: 25px;
+  top: -2px;
+}
+
+.search-bar input {
+  height: 41px;
+  border-radius: 45px;
+  padding-left: 15px;
+}
+
+.date-filter {
+  height: 43px;
+  background-color: #EEF7FF;
+  border: 0;
+  color: #0078E6;
+  padding: 12px
+}
+
+.date-filter span {
+  margin-left: 10px;
+  margin-right: 10px;
+  
+}
+
+.more-filter{
+  background-color: transparent;
+  border: 0;
+  margin-left: 15px;
 }
