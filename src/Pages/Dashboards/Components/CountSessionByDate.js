@@ -14,12 +14,13 @@ const CountSessionByDate = (props) => {
         axios(config).then(function (response) {
             if (response.status == 200) {
                 setLoginCount(response.data);
+                console.log(response.data)
             }
         });
     }
 
     const series = [{
-        name: "STOCK ABC",
+        name: "",
         data: loginCount
     }]
 
