@@ -15,25 +15,26 @@ const Bars = (props) => {
         axios(config).then(function (response) {
             if (response.status == 200) {
                 setEvaluationsNumbers(response.data);
+                console.log(response.data)
             }
         });
     }
     
     const series = [{
         name: '1',
-        data: evaluationsNumbers.easyToUse
+        data: [evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[0], evaluationsNumbers.clear1 != null && evaluationsNumbers.clear1[0], evaluationsNumbers.visually != null && evaluationsNumbers.visually[0], evaluationsNumbers.responsive != null && evaluationsNumbers.responsive[0], evaluationsNumbers.reliable != null && evaluationsNumbers.reliable[0] ]
     }, {
         name: '2',
-        data: evaluationsNumbers.clear1
+        data: [evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[1], evaluationsNumbers.clear1 != null && evaluationsNumbers.clear1[1], evaluationsNumbers.visually != null && evaluationsNumbers.visually[1], evaluationsNumbers.responsive != null && evaluationsNumbers.responsive[1], evaluationsNumbers.reliable != null && evaluationsNumbers.reliable[1]]
     }, {
         name: '3',
-        data: evaluationsNumbers.visually
+        data: [evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[2], evaluationsNumbers.clear1 != null && evaluationsNumbers.clear1[2], evaluationsNumbers.visually != null && evaluationsNumbers.visually[2], evaluationsNumbers.responsive != null && evaluationsNumbers.responsive[2], evaluationsNumbers.reliable != null && evaluationsNumbers.reliable[2]]
     }, {
         name: '4',
-        data: evaluationsNumbers.responsive
+        data: [evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[3], evaluationsNumbers.clear1 != null && evaluationsNumbers.clear1[3], evaluationsNumbers.visually != null && evaluationsNumbers.visually[3], evaluationsNumbers.responsive != null && evaluationsNumbers.responsive[3], evaluationsNumbers.reliable != null && evaluationsNumbers.reliable[3]]
     }, {
         name: '5',
-        data: evaluationsNumbers.reliable
+        data: [evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[4], evaluationsNumbers.clear1 != null && evaluationsNumbers.clear1[4], evaluationsNumbers.visually != null && evaluationsNumbers.visually[4], evaluationsNumbers.responsive != null && evaluationsNumbers.responsive[4], evaluationsNumbers.reliable != null && evaluationsNumbers.reliable[4]]
     }];
 
     const options = {
