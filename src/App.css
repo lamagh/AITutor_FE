@@ -321,22 +321,45 @@ h2 {
 .date-filter span {
   margin-left: 10px;
   margin-right: 10px;
-  
+
 }
 
-.more-filter{
+.more-filter {
   background-color: transparent;
   border: 0;
   margin-left: 15px;
 }
 
-.feedback h5{
-font-size: 17px;
-}
-.feedback p{
-font-size: 12px;
+.feedback h5 {
+  font-size: 17px;
 }
 
-.mt-35{
+.feedback p {
+  font-size: 12px;
+}
+
+.mt-35 {
   margin-top: 35px;
+}
+
+.active-students-filter {
+  list-style: none;
+  display: flex;
+  font-size: 11px;
+  padding: 0;
+  position: absolute;
+  margin-bottom: 0;
+}
+
+.active-students-filter li{
+  padding: 5px 8px;
+  margin-bottom: 0;
+}
+.active-students-filter li:hover{
+  cursor: pointer;
+}
+.active-students-filter li.active{
+  background-color: #0078E6;
+  color: white;
+  border-radius: 15px;
 }

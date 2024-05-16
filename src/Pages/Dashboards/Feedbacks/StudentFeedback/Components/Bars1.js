@@ -3,7 +3,13 @@ import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 const Bars1 = (props) => {
-    const [recomendationNumbers, setRecomendationNumbers] = useState([])
+    const [recomendationNumbers, setRecomendationNumbers] = useState({
+        recomendFriend: [0, 0, 0, 0, 0],
+        recomendStudents: [0, 0, 0, 0, 0],
+        imporoveGrades: [0, 0, 0, 0, 0],
+        enjoyable: [0, 0, 0, 0, 0],
+        exceed: [0, 0, 0, 0, 0],
+    })
     const series = [{
         name: '1',
         data: [recomendationNumbers.recomendFriend != null && recomendationNumbers.recomendFriend[0], recomendationNumbers.recomendStudents != null && recomendationNumbers.recomendStudents[0], recomendationNumbers.imporoveGrades != null && recomendationNumbers.imporoveGrades[0], recomendationNumbers.enjoyable != null && recomendationNumbers.enjoyable[0], recomendationNumbers.exceed != null && recomendationNumbers.exceed[0]]

@@ -47,6 +47,7 @@ function App() {
   const [selectedDistrict, setSelectedDistrict] = useState(0)
   const [selectedSchool, setSelectedSchool] = useState(0)
   const [selectedSchoolType, setSchoolType] = useState(0)
+  const [selectedActiveFilter, setSelectedActiveFilter] = useState(1)
   const applyFilter = () => {
     var param = ""
     if (selectedDistrict != 0) {
@@ -279,9 +280,14 @@ function App() {
                       <div className='counter-icon blueBG'>
                         <img src={activeImg} />
                       </div>
-                      <div className='counter-info'>
+                      <div className='counter-info p-relative'>
                         <h5>Active</h5>
                         <p>{headerNumbers.activeStudents}</p>
+                        <ul className='active-students-filter'>
+                          <li className={selectedActiveFilter == 1 ? "active": ""} onClick={() => setSelectedActiveFilter(1)}>24h</li>
+                          <li className={selectedActiveFilter == 2 ? "active": ""} onClick={() => setSelectedActiveFilter(2)}>7d</li>
+                          <li className={selectedActiveFilter == 3 ? "active": ""} onClick={() => setSelectedActiveFilter(3)}>30d</li>
+                        </ul>
                       </div>
                     </div>
                   </div>

@@ -3,7 +3,13 @@ import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 const Bars = (props) => {
-    const [evaluationsNumbers, setEvaluationsNumbers] = useState([])
+    const [evaluationsNumbers, setEvaluationsNumbers] = useState({
+        easyToUse: [0, 0, 0, 0, 0],
+        clear1: [0, 0, 0, 0, 0],
+        visually: [0, 0, 0, 0, 0],
+        responsive: [0, 0, 0, 0, 0],
+        reliable: [0, 0, 0, 0, 0],
+    })
     const getEvaluationsNumbers = () => {
         var config = {
             method: "get",
@@ -19,10 +25,10 @@ const Bars = (props) => {
             }
         });
     }
-    
+
     const series = [{
         name: '1',
-        data: [evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[0], evaluationsNumbers.clear1 != null && evaluationsNumbers.clear1[0], evaluationsNumbers.visually != null && evaluationsNumbers.visually[0], evaluationsNumbers.responsive != null && evaluationsNumbers.responsive[0], evaluationsNumbers.reliable != null && evaluationsNumbers.reliable[0] ]
+        data: [evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[0], evaluationsNumbers.clear1 != null && evaluationsNumbers.clear1[0], evaluationsNumbers.visually != null && evaluationsNumbers.visually[0], evaluationsNumbers.responsive != null && evaluationsNumbers.responsive[0], evaluationsNumbers.reliable != null && evaluationsNumbers.reliable[0]]
     }, {
         name: '2',
         data: [evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[1], evaluationsNumbers.clear1 != null && evaluationsNumbers.clear1[1], evaluationsNumbers.visually != null && evaluationsNumbers.visually[1], evaluationsNumbers.responsive != null && evaluationsNumbers.responsive[1], evaluationsNumbers.reliable != null && evaluationsNumbers.reliable[1]]

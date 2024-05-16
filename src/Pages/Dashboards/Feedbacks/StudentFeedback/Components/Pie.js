@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 const Pie = (props) => {
-    const [stars, setStars] = useState([])
+    const [stars, setStars] = useState([0,0,0,0,0])
     const series = [44, 55, 41, 17, 15];
 
     const options = {
@@ -22,6 +22,7 @@ const Pie = (props) => {
         };
         axios(config).then(function (response) {
             if (response.status == 200) {
+                console.log(response.data)
                 setStars(response.data);
             }
         });

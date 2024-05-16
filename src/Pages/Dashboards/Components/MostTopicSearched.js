@@ -101,7 +101,7 @@ const MostTopicSearched = (props) => {
                 type="bar"
                 options={options}
                 series={series}
-                height={350}
+                height={475}
             />
         </>
 
