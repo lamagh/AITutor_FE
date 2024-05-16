@@ -9,6 +9,7 @@ const Bars = (props) => {
         visually: [0, 0, 0, 0, 0],
         responsive: [0, 0, 0, 0, 0],
         reliable: [0, 0, 0, 0, 0],
+        series:["",""]
     })
     const getEvaluationsNumbers = () => {
         var config = {
@@ -21,7 +22,6 @@ const Bars = (props) => {
         axios(config).then(function (response) {
             if (response.status == 200) {
                 setEvaluationsNumbers(response.data);
-                console.log(response.data)
             }
         });
     }
