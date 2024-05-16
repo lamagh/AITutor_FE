@@ -328,11 +328,11 @@ function App() {
             <div className='graph-box-tabs'>
               <div className='row m-0'>
                 <div className={tab == 1 ? "col-md-6 tab active" : "col-md-6 tab"} onClick={() => setTab(1)}>
-                  Activity per grade
+                  Active Students
                 </div>
                 {/* <div className='col-md-2'></div> */}
                 <div className={tab == 2 ? "col-md-6 tab active" : "col-md-6 tab"} onClick={() => setTab(2)}>
-                  Count of activity by grade
+                  Active Students Count
                 </div>
               </div>
             </div>

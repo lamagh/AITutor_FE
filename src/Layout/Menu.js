@@ -14,7 +14,7 @@ const Menu = () => {
                 <li className="active">
                     <img src={dashboardBlue} />
                 </li>
-                <li>
+                {/* <li>
                     <img src={studentWhite} />
                 </li>
                 <li>
@@ -25,7 +25,7 @@ const Menu = () => {
                 </li>
                 <li>
                     <img src={moeWhite} />
-                </li>
+                </li> */}
             </ul>
         </>
     );
