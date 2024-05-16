@@ -16,7 +16,7 @@ import notificationBell from "./images/TopBar/notification-bell.png"
 import userIcon from "./images/TopBar/user-icon.png"
 import arrowDown from "./images/TopBar/arrow-down.png"
 import AITutorResponses from './Pages/Dashboards/Components/AITutorResponses';
-import StudentFeedback from './Pages/Dashboards/Components/StudentFeedback';
+import StudentFeedback from './Pages/Dashboards/Feedbacks/StudentFeedback/StudentFeedback';
 import districts from "./images/Select/districts.png"
 import school from "./images/Select/school.png"
 import searchIcon from "./images/TopBar/search.png"
@@ -25,9 +25,12 @@ import dateArrowDown from "./images/Select/arrowDown.png"
 import moreFilter from "./images/Select/more.png"
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import EducatorsFeedback from './Pages/Dashboards/Feedbacks/EducatorsFeedback/EducatorsFeedback';
+import TrainingFeedback from './Pages/Dashboards/Feedbacks/TraningFeedback/TrainingFeedback';
 function App() {
 
   const [tab, setTab] = useState(1)
+  const [tabb, setTabb] = useState(1)
   const [schoolTypes, setSchoolTypes] = useState([])
   const [countries, setCountries] = useState([])
   const [schools, setSchool] = useState([])
@@ -46,11 +49,11 @@ function App() {
   const [selectedSchoolType, setSchoolType] = useState(0)
   const applyFilter = () => {
     var param = ""
-    if (selectedDistrict != 0){
-      if (param == ""){
+    if (selectedDistrict != 0) {
+      if (param == "") {
         param = "?Emirates=" + selectedDistrict
       }
-      else{
+      else {
         param = param + "&Emirates=" + selectedDistrict
       }
     }
@@ -59,7 +62,7 @@ function App() {
         param = "?SchoolId=" + selectedSchool
       }
       else {
-        param = param +  "&SchoolId=" + selectedSchool
+        param = param + "&SchoolId=" + selectedSchool
       }
     }
     if (selectedSchoolType != 0) {
@@ -189,7 +192,7 @@ function App() {
                   <div className='col-md-3 p-relative'>
                     <img src={districts} className='filter-image-select' />
                     <select className='filter-select' onChange={(e) => setSelectedDistrict(e.target.value)}>
-                      <option value={0}>Emirates</option>
+                      <option value={0}>All Emirates</option>
                       {countries.map((o) => (
                         <option value={o.value}>{o.label}</option>
                       ))}
@@ -198,7 +201,7 @@ function App() {
                   <div className='col-md-4 p-relative'>
                     <img src={school} className='filter-image-select' />
                     <select className='filter-select' onChange={(e) => setSelectedSchool(e.target.value)}>
-                      <option value={0}>School Name</option>
+                      <option value={0}>All Schools</option>
                       {schools.map((o) => (
                         <option value={o.value}>{o.label}</option>
                       ))}
@@ -207,7 +210,7 @@ function App() {
                   <div className='col-md-3 p-relative'>
                     <img src={school} className='filter-image-select' />
                     <select className='filter-select' onChange={(e) => setSchoolType(e.target.value)}>
-                      <option value={0}>School Type</option>
+                      <option value={0}>All School Types</option>
                       {schoolTypes.map((o) => (
                         <option value={o.value}>{o.label}</option>
                       ))}
@@ -242,7 +245,7 @@ function App() {
                     <img src={totalStudentsImg} />
                   </div>
                   <div className='counter-info'>
-                    <h5>Total Students</h5>
+                    <h5>Potential Students</h5>
                     <p>{headerNumbers.students}</p>
                   </div>
                 </div>
@@ -325,11 +328,11 @@ function App() {
             <div className='graph-box-tabs'>
               <div className='row m-0'>
                 <div className={tab == 1 ? "col-md-6 tab active" : "col-md-6 tab"} onClick={() => setTab(1)}>
-                  Grade Activity Percentage
+                  Activity per grade
                 </div>
                 {/* <div className='col-md-2'></div> */}
                 <div className={tab == 2 ? "col-md-6 tab active" : "col-md-6 tab"} onClick={() => setTab(2)}>
-                  Grade Activity Count
+                  Count of activity by grade
                 </div>
               </div>
             </div>
@@ -345,13 +348,37 @@ function App() {
             <div className='graph-box mb-3'>
               <MostTopicSearched parameters={parameters} />
             </div>
+
+          </div>
+          <div className='col-md-6 mb-3'>
             <div className='graph-box'>
               <AITutorResponses parameters={parameters} />
             </div>
           </div>
-          <div className='col-md-6 mb-3'>
-            <div className='graph-box'>
-              <StudentFeedback parameters={parameters} />
+          <div className='col-md-12 mb-3 p-relative'>
+            <div class="graph-box-tabs">
+              <div class="row m-0">
+                <div className={tabb == 1 ? "col-md-2 tab active" : "col-md-2 tab"} onClick={() => setTabb(1)}>
+                  Student Feedback
+                </div>
+                <div className={tabb == 2 ? "col-md-2 tab active" : "col-md-2 tab"} onClick={() => setTabb(2)}>
+                  Educators Feedback
+                </div>
+                <div className={tabb == 3 ? "col-md-2 tab active" : "col-md-2 tab"} onClick={() => setTabb(3)}>
+                  Training Feedback
+                </div>
+              </div>
+            </div>
+            <div className='graph-box mt-35'>
+              {tabb == 1 && (
+                <StudentFeedback parameters={parameters} />
+              )}
+              {tabb == 2 && (
+                <EducatorsFeedback parameters={parameters} />
+              )}
+              {tabb == 3 && (
+                <TrainingFeedback parameters={parameters} />
+              )}
             </div>
           </div>
         </div>
