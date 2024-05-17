@@ -50,7 +50,7 @@ const MostTopicSearched = (props) => {
                 horizontal: true,
                 distributed: true,
                 barHeight: '80%',
-                isFunnel: true,
+                // isFunnel: true,
             },
         },
         colors: [
@@ -60,7 +60,7 @@ const MostTopicSearched = (props) => {
             '#0078E6',
         ],
         dataLabels: {
-            enabled: true,
+            enabled: false,
             formatter: function (val, opt) {
                 return opt.w.globals.labels[opt.dataPointIndex]
             },
