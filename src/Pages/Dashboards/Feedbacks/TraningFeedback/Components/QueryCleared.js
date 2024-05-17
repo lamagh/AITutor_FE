@@ -24,16 +24,12 @@ const QueryCleared = (props) => {
     }];
 
     var options = {
-
-        chart: {
-            type: 'bar',
-            height: 350
-        },
         plotOptions: {
             bar: {
                 borderRadius: 4,
                 borderRadiusApplication: 'end',
                 horizontal: true,
+                distributed: true
             }
         },
         dataLabels: {
@@ -41,7 +37,8 @@ const QueryCleared = (props) => {
         },
         xaxis: {
             categories: ['Yes', 'No'],
-        }
+        },
+        colors: ["#0078E6", "#05BC86"],
     };
     useEffect(() => {
         getTrainingNumbers()
@@ -52,7 +49,7 @@ const QueryCleared = (props) => {
                 type="bar"
                 options={options}
                 series={series}
-                height={380}
+                height={280}
             />
         </>
     );

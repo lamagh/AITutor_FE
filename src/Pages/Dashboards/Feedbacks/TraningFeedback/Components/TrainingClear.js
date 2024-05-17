@@ -15,7 +15,6 @@ const TrainingClear = (props) => {
         axios(config).then(function (response) {
             if (response.status == 200) {
                 setTrainingNumbers(response.data);
-                console.log(response.data)
             }
         });
     }
@@ -24,16 +23,12 @@ const TrainingClear = (props) => {
     }];
 
     var options = {
-
-        chart: {
-            type: 'bar',
-            height: 350
-        },
         plotOptions: {
             bar: {
                 borderRadius: 4,
                 borderRadiusApplication: 'end',
                 horizontal: true,
+                distributed: true
             }
         },
         dataLabels: {
@@ -41,7 +36,8 @@ const TrainingClear = (props) => {
         },
         xaxis: {
             categories: ['Yes', 'No'],
-        }
+        },
+        colors: ["#0078E6", "#05BC86"],
     };
     useEffect(() => {
         getTrainingNumbers()
@@ -52,7 +48,7 @@ const TrainingClear = (props) => {
                 type="bar"
                 options={options}
                 series={series}
-                height={380}
+                height={280}
             />
         </>
     );
