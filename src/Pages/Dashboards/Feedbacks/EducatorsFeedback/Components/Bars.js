@@ -24,10 +24,10 @@ const Bars = (props) => {
         });
     }
     var series = [{
-        name: "Strongly Disagree",
+        name: "Very Difficult",
         data: [evaluationsNumbers.easyToNavigate != null && evaluationsNumbers.easyToNavigate[0], evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[0]]
     }, {
-        name: "Disagree",
+        name: "Difficult",
         data: [evaluationsNumbers.easyToNavigate != null && evaluationsNumbers.easyToNavigate[1], evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[1]]
     },
     {
