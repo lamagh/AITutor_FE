@@ -46,7 +46,7 @@ function App() {
   const [selectedDistrict, setSelectedDistrict] = useState(0)
   const [selectedSchool, setSelectedSchool] = useState(0)
   const [selectedSchoolType, setSchoolType] = useState(0)
-  const [selectedActiveFilter, setSelectedActiveFilter] = useState(1)
+  const [selectedActiveFilter, setSelectedActiveFilter] = useState(3)
   const applyFilter = () => {
     var param = "";
     if (selectedDistrict != 0) {
@@ -89,6 +89,7 @@ function App() {
     axios(config).then(function (response) {
       if (response.status == 200) {
         setHeaderNumbers(response.data);
+        console.log(response.data)
       }
     });
   };
@@ -298,7 +299,7 @@ function App() {
                       </div>
                       <div className='counter-info p-relative'>
                         <h5>Active</h5>
-                        <p>{headerNumbers.promptCount}</p>
+                        <p>{selectedActiveFilter == 1 && headerNumbers.last7Days}{selectedActiveFilter == 2 && headerNumbers.last24Hours}{selectedActiveFilter == 3 && headerNumbers.last30Days}</p>
                         <ul className='active-students-filter'>
                           <li className={selectedActiveFilter == 1 ? "active": ""} onClick={() => setSelectedActiveFilter(1)}>24h</li>
                           <li className={selectedActiveFilter == 2 ? "active": ""} onClick={() => setSelectedActiveFilter(2)}>7d</li>
