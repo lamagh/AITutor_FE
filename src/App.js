@@ -384,7 +384,7 @@ function App() {
                     <img src={promptEntered} />
                   </div>
                   <div className="counter-info">
-                    <h5>Total Prompt Entered</h5>
+                    <h5>Total Prompts Entered</h5>
                     <p>{headerNumbers.promptCount}</p>
                   </div>
                 </div>

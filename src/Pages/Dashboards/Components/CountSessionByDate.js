@@ -58,7 +58,7 @@ const CountSessionByDate = (props) => {
         },[props.parameters])
     return (
         <>
-            <h3>Count of sessions by Date</h3>
+            <h3>Count of Conversations</h3>
             <ReactApexChart
                 type="area"
                 options={options}
