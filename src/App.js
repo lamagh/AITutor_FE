@@ -78,8 +78,6 @@ function App() {
         setSelectedDate()
         break;
     }
-    
-    handleDateList()
   }
   const applyFilter = () => {
     var param = "";

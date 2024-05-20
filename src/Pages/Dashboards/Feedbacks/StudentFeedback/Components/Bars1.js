@@ -76,7 +76,7 @@ const Bars1 = (props) => {
                 }
             }
         },
-        colors: ["#A31818", "#EE7272", "#616161", "#0078E6", "#05BC86"],
+        colors: ["#BBE6FF", "#7DC1FF", "#0005E6", "#0078E6", "#05BC86"],
         legend: {
             show: true,
             position: "bottom",
