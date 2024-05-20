@@ -11,19 +11,19 @@ const Bars1 = (props) => {
         exceed: [0, 0, 0, 0, 0],
     })
     const series = [{
-        name: '1',
+        name: 'Not at All',
         data: [recomendationNumbers.recomendFriend != null && recomendationNumbers.recomendFriend[0], recomendationNumbers.recomendStudents != null && recomendationNumbers.recomendStudents[0], recomendationNumbers.imporoveGrades != null && recomendationNumbers.imporoveGrades[0], recomendationNumbers.enjoyable != null && recomendationNumbers.enjoyable[0], recomendationNumbers.exceed != null && recomendationNumbers.exceed[0]]
     }, {
-        name: '2',
+        name: 'Slightly',
         data: [recomendationNumbers.recomendFriend != null && recomendationNumbers.recomendFriend[1], recomendationNumbers.recomendStudents != null && recomendationNumbers.recomendStudents[1], recomendationNumbers.imporoveGrades != null && recomendationNumbers.imporoveGrades[1], recomendationNumbers.enjoyable != null && recomendationNumbers.enjoyable[1], recomendationNumbers.exceed != null && recomendationNumbers.exceed[1]]
     }, {
-        name: '3',
+        name: 'Moderately',
         data: [recomendationNumbers.recomendFriend != null && recomendationNumbers.recomendFriend[2], recomendationNumbers.recomendStudents != null && recomendationNumbers.recomendStudents[2], recomendationNumbers.imporoveGrades != null && recomendationNumbers.imporoveGrades[2], recomendationNumbers.enjoyable != null && recomendationNumbers.enjoyable[2], recomendationNumbers.exceed != null && recomendationNumbers.exceed[2]]
     }, {
-        name: '4',
+        name: 'Likely',
         data: [recomendationNumbers.recomendFriend != null && recomendationNumbers.recomendFriend[3], recomendationNumbers.recomendStudents != null && recomendationNumbers.recomendStudents[3], recomendationNumbers.imporoveGrades != null && recomendationNumbers.imporoveGrades[3], recomendationNumbers.enjoyable != null && recomendationNumbers.enjoyable[3], recomendationNumbers.exceed != null && recomendationNumbers.exceed[3]]
     }, {
-        name: '5',
+        name: 'Very Likely',
         data: [recomendationNumbers.recomendFriend != null && recomendationNumbers.recomendFriend[4], recomendationNumbers.recomendStudents != null && recomendationNumbers.recomendStudents[4], recomendationNumbers.imporoveGrades != null && recomendationNumbers.imporoveGrades[4], recomendationNumbers.enjoyable != null && recomendationNumbers.enjoyable[4], recomendationNumbers.exceed != null && recomendationNumbers.exceed[4]]
     }];
 
