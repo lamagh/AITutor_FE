@@ -7,6 +7,7 @@ const GradeActivityPercentage = (props) => {
     const [gradeNumbers, setGradeNumbers] = useState([])
     const [gradeNumbersLabels, setGradeNumbersLabels] = useState([])
     const [gradeNumbersValues, setGradeNumbersValues] = useState([])
+    const [gradeNumbersValuesNon, setGradeNumbersValuesNon] = useState([])
     const getGradeNumbers = () => {
         var config = {
             method: "get",
@@ -18,22 +19,30 @@ const GradeActivityPercentage = (props) => {
         axios(config).then(function (response) {
             if (response.status == 200) {
                 setGradeNumbers(response.data);
+                console.log(response.data)
 
                 var labels = []
                 var values = []
+                var nonValues = []
                 response.data.forEach(element => {
-                    labels.push(element.label)
-                    values.push(element.percentage)
+                    labels.push(element.gradeName)
+                    values.push(100 - element.percentage)
+                    nonValues.push(element.percentage)
                 });
                 setGradeNumbersLabels(labels)
-                setGradeNumbersValues(values)
+                setGradeNumbersValues(nonValues)
+                setGradeNumbersValuesNon(values)
             }
         });
     }
 
     const series = [{
-        name: '',
+        name: 'Active',
         data: gradeNumbersValues
+    },
+    {
+        name: 'Inactive',
+        data: gradeNumbersValuesNon
     }];
 
     const options = {
@@ -41,6 +50,8 @@ const GradeActivityPercentage = (props) => {
             toolbar: {
                 show: false,
             },
+            stacked: true,
+            stackType: '100%'
         },
         plotOptions: {
             bar: {
@@ -64,7 +75,8 @@ const GradeActivityPercentage = (props) => {
             show: false
         },
         fill: {
-            opacity: 1
+            opacity: 1,
+            colors: ["#0078E6", "#9FD5F3"]
         },
         tooltip: {
             y: {
@@ -77,7 +89,7 @@ const GradeActivityPercentage = (props) => {
 
     useEffect(() => {
         getGradeNumbers();
-    },[props.parameters])
+    }, [props.parameters])
 
     return (
         <>

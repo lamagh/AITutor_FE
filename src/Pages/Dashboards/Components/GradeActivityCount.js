@@ -7,6 +7,7 @@ const GradeActivityCount = (props) => {
     const [gradeNumbers, setGradeNumbers] = useState([])
     const [gradeNumbersLabels, setGradeNumbersLabels] = useState([])
     const [gradeNumbersValues, setGradeNumbersValues] = useState([])
+    const [gradeNumbersValuesNon, setGradeNumbersValuesNon] = useState([])
     const getGradeNumbers = () => {
         var config = {
             method: "get",
@@ -18,23 +19,30 @@ const GradeActivityCount = (props) => {
         axios(config).then(function (response) {
             if (response.status == 200) {
                 setGradeNumbers(response.data);
-                
+                console.log(response.data)
                 var labels = []
                 var values = []
+                var nonValues = []
                 response.data.forEach(element => {
-                    labels.push(element.label)
-                    values.push(element.value)
+                    labels.push(element.gradeName)
+                    nonValues.push(element.studentCount - element.studentPrompt)
+                    values.push(element.studentPrompt)
                 });
                 setGradeNumbersLabels(labels)
                 setGradeNumbersValues(values)
+                setGradeNumbersValuesNon(nonValues)
             }
         });
     }
 
 
     const series = [{
-        name: '',
+        name: 'Active',
         data: gradeNumbersValues
+    },
+    {
+        name: 'In Active',
+        data: gradeNumbersValuesNon
     }];
 
     const options = {
@@ -42,6 +50,7 @@ const GradeActivityCount = (props) => {
             toolbar: {
                 show: false,
             },
+            stacked: true,
         },
         plotOptions: {
             bar: {
@@ -51,7 +60,8 @@ const GradeActivityCount = (props) => {
             },
         },
         dataLabels: {
-            enabled: false
+            enabled: false,
+       
         },
         stroke: {
             show: true,
@@ -66,7 +76,7 @@ const GradeActivityCount = (props) => {
         },
         fill: {
             opacity: 1,
-            colors: ["#616161"]
+            colors: ["#05BC86", "#84D4BD"]
         },
         tooltip: {
             y: {
@@ -79,7 +89,7 @@ const GradeActivityCount = (props) => {
 
     useEffect(() => {
         getGradeNumbers()
-    },[props.parameters])
+    }, [props.parameters])
 
     return (
         <>
