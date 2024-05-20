@@ -42,45 +42,44 @@ function App() {
     distinctLoginCount: 0,
   });
 
-  const [parameters, setParameter] = useState("")
-  const [selectedDistrict, setSelectedDistrict] = useState(0)
-  const [selectedSchool, setSelectedSchool] = useState(0)
-  const [selectedSchoolType, setSchoolType] = useState(0)
-  const [selectedActiveFilter, setSelectedActiveFilter] = useState(3)
-  const [showDateList, setShowDateList] = useState(false)
+  const [parameters, setParameter] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState(0);
+  const [selectedSchool, setSelectedSchool] = useState(0);
+  const [selectedSchoolType, setSchoolType] = useState(0);
+  const [selectedActiveFilter, setSelectedActiveFilter] = useState(3);
+  const [showDateList, setShowDateList] = useState(false);
 
   const handleDateList = () => {
     if (showDateList == true) {
-      setShowDateList(false)
+      setShowDateList(false);
+    } else {
+      setShowDateList(true);
     }
-    else {
-      setShowDateList(true)
-    }
-  }
-  const [selectedDateTitle, setSelectedDateTitle] = useState("")
-  const [selectedDate, setSelectedDate] = useState([])
+  };
+  const [selectedDateTitle, setSelectedDateTitle] = useState("");
+  const [selectedDate, setSelectedDate] = useState([]);
   const handleSetDate = (date) => {
     switch (date) {
       case 1:
-        setSelectedDateTitle("Today")
-        setSelectedDate()
+        setSelectedDateTitle("Today");
+        setSelectedDate();
         break;
       case 7:
-        setSelectedDateTitle("This Week")
-        setSelectedDate()
+        setSelectedDateTitle("This Week");
+        setSelectedDate();
         break;
       case 30:
-        setSelectedDateTitle("This Month")
-        setSelectedDate()
+        setSelectedDateTitle("This Month");
+        setSelectedDate();
         break;
       case 365:
-        setSelectedDateTitle("Past Year")
-        setSelectedDate()
+        setSelectedDateTitle("Past Year");
+        setSelectedDate();
         break;
     }
-    
-    handleDateList()
-  }
+
+    //handleDateList();
+  };
   const applyFilter = () => {
     var param = "";
     if (selectedDistrict != 0) {
@@ -123,7 +122,7 @@ function App() {
     axios(config).then(function (response) {
       if (response.status == 200) {
         setHeaderNumbers(response.data);
-        console.log(response.data)
+        console.log(response.data);
       }
     });
   };
@@ -187,7 +186,7 @@ function App() {
     getSchoolType();
     getSchools();
     getHeaderNumbers();
-    handleSetDate(30)
+    handleSetDate(30);
   }, [parameters]);
 
   return (
@@ -277,7 +276,10 @@ function App() {
                 </div>
               </div>
               <div className="col-md-2 text-right p-relative">
-                <button className="date-filter" onClick={() => handleDateList()}>
+                <button
+                  className="date-filter"
+                  onClick={() => handleDateList()}
+                >
                   <img src={dateFilterIcon} />
                   <span>{selectedDateTitle}</span>
                   <img src={dateArrowDown} />
@@ -308,9 +310,7 @@ function App() {
                       </button>
                     </li>
                     <li>
-                      <button className="">
-                        Custom
-                      </button>
+                      <button className="">Custom</button>
                     </li>
                   </ul>
                 )}
@@ -361,13 +361,40 @@ function App() {
                       <div className="counter-icon blueBG">
                         <img src={activeImg} />
                       </div>
-                      <div className='counter-info p-relative'>
+                      <div className="counter-info p-relative">
                         <h5>Active</h5>
-                        <p>{selectedActiveFilter == 1 && headerNumbers.last7Days}{selectedActiveFilter == 2 && headerNumbers.last24Hours}{selectedActiveFilter == 3 && headerNumbers.last30Days}</p>
-                        <ul className='active-students-filter'>
-                          <li className={selectedActiveFilter == 1 ? "active" : ""} onClick={() => setSelectedActiveFilter(1)}>24h</li>
-                          <li className={selectedActiveFilter == 2 ? "active" : ""} onClick={() => setSelectedActiveFilter(2)}>7d</li>
-                          <li className={selectedActiveFilter == 3 ? "active" : ""} onClick={() => setSelectedActiveFilter(3)}>30d</li>
+                        <p>
+                          {selectedActiveFilter == 1 && headerNumbers.last7Days}
+                          {selectedActiveFilter == 2 &&
+                            headerNumbers.last24Hours}
+                          {selectedActiveFilter == 3 &&
+                            headerNumbers.last30Days}
+                        </p>
+                        <ul className="active-students-filter">
+                          <li
+                            className={
+                              selectedActiveFilter == 1 ? "active" : ""
+                            }
+                            onClick={() => setSelectedActiveFilter(1)}
+                          >
+                            24h
+                          </li>
+                          <li
+                            className={
+                              selectedActiveFilter == 2 ? "active" : ""
+                            }
+                            onClick={() => setSelectedActiveFilter(2)}
+                          >
+                            7d
+                          </li>
+                          <li
+                            className={
+                              selectedActiveFilter == 3 ? "active" : ""
+                            }
+                            onClick={() => setSelectedActiveFilter(3)}
+                          >
+                            30d
+                          </li>
                         </ul>
                       </div>
                     </div>
