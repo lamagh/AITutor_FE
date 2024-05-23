@@ -56,12 +56,20 @@ const GradeActivityCount = (props) => {
             bar: {
                 horizontal: false,
                 columnWidth: '55%',
-                endingShape: 'rounded'
+                endingShape: 'rounded',
+                borderRadius: 10,
+                borderRadiusApplication: "end",
+                dataLabels: {
+                    position: 'center', // top, center, bottom
+                },
             },
         },
         dataLabels: {
-            enabled: false,
-       
+            enabled: true,
+            style: {
+                fontSize: '12px',
+                colors: ["#fff"]
+            }
         },
         stroke: {
             show: true,

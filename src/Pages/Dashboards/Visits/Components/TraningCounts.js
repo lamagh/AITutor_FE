@@ -1,9 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
-
-const GradeActivityPercentage = (props) => {
-
+const TraningCounts = (props) => {
     const [gradeNumbers, setGradeNumbers] = useState([])
     const [gradeNumbersLabels, setGradeNumbersLabels] = useState([])
     const [gradeNumbersValues, setGradeNumbersValues] = useState([])
@@ -20,51 +18,51 @@ const GradeActivityPercentage = (props) => {
             if (response.status == 200) {
                 setGradeNumbers(response.data);
                 console.log(response.data)
-
                 var labels = []
                 var values = []
                 var nonValues = []
                 response.data.forEach(element => {
                     labels.push(element.gradeName)
-                    values.push(100 - element.percentage)
-                    nonValues.push(element.percentage)
+                    nonValues.push(element.studentCount - element.studentPrompt)
+                    values.push(element.studentPrompt)
                 });
                 setGradeNumbersLabels(labels)
-                setGradeNumbersValues(nonValues)
-                setGradeNumbersValuesNon(values)
+                setGradeNumbersValues(values)
+                setGradeNumbersValuesNon(nonValues)
             }
         });
     }
 
+
     const series = [{
         name: 'Active',
         data: gradeNumbersValues
-    },
-    {
-        name: 'Inactive',
-        data: gradeNumbersValuesNon
-    }];
+    },];
 
     const options = {
         chart: {
             toolbar: {
                 show: false,
             },
-            stacked: true,
-            stackType: '100%'
         },
         plotOptions: {
             bar: {
                 horizontal: false,
                 columnWidth: '55%',
-                endingShape: 'rounded'
+                endingShape: 'rounded',
+                borderRadius: 10,
+                borderRadiusApplication: "end",
+                dataLabels: {
+                    position: 'top', // top, center, bottom
+                },
             },
         },
         dataLabels: {
             enabled: true,
+            offsetY: -20,
             style: {
                 fontSize: '12px',
-                colors: ["#fff"]
+                colors: ["#304758"]
             }
         },
         stroke: {
@@ -80,19 +78,19 @@ const GradeActivityPercentage = (props) => {
         },
         fill: {
             opacity: 1,
-            colors: ["#0078E6", "#9FD5F3"]
+            colors: ["#0005E6"]
         },
         tooltip: {
             y: {
                 formatter: function (val) {
-                    return val + "%"
+                    return val
                 }
             }
         },
     };
 
     useEffect(() => {
-        getGradeNumbers();
+        getGradeNumbers()
     }, [props.parameters])
 
     return (
@@ -106,5 +104,5 @@ const GradeActivityPercentage = (props) => {
         </>
     );
 }
-
-export default GradeActivityPercentage;
+ 
+export default TraningCounts;

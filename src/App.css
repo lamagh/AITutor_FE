@@ -394,3 +394,11 @@ position: absolute;
   box-shadow: none!important;
   font-size: 18px;
 }
+
+.active svg{
+  color: #F7C000;
+}
+
+.graph-box-list{
+  padding: 0;
+}
