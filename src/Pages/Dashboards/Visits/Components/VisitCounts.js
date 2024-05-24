@@ -9,7 +9,7 @@ const VisitCounts = (props) => {
     const getGradeNumbers = () => {
         var config = {
             method: "get",
-            url: process.env.REACT_APP_API_URL + "Dashboard/GetGradeNumbers/" + props.parameters,
+            url: process.env.REACT_APP_API_URL + "Dashboard/GetVisitingCount/" + 0,
             headers: {
                 "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
             },
@@ -17,25 +17,21 @@ const VisitCounts = (props) => {
         axios(config).then(function (response) {
             if (response.status == 200) {
                 setGradeNumbers(response.data);
-                console.log(response.data)
                 var labels = []
                 var values = []
-                var nonValues = []
                 response.data.forEach(element => {
-                    labels.push(element.gradeName)
-                    nonValues.push(element.studentCount - element.studentPrompt)
-                    values.push(element.studentPrompt)
+                    labels.push(element.label)
+                    values.push(element.value)
                 });
                 setGradeNumbersLabels(labels)
                 setGradeNumbersValues(values)
-                setGradeNumbersValuesNon(nonValues)
             }
         });
     }
 
 
     const series = [{
-        name: 'Active',
+        name: 'Visit(s)',
         data: gradeNumbersValues
     },];
 
@@ -91,7 +87,7 @@ const VisitCounts = (props) => {
 
     useEffect(() => {
         getGradeNumbers()
-    }, [props.parameters])
+    }, [])
 
     return (
         <>

@@ -1,23 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import moment from "moment";
 import { MdStarRate } from "react-icons/md";
+import axios from "axios";
 
 const VisitList = (props) => {
-    const [visitList, setVisitList] = useState([
-        {
-            date: "2024-05-05",
-            visitType: "Physical",
-            trainer: "Layal Al Abdallah",
-            attendees: 100,
-            userType: [
-                {
+    const [visitList, setVisitList] = useState([])
 
-                }
-            ],
-            rate: 1
-        }
-    ])
+    const getVisitList = () => {
+        var config = {
+            method: "get",
+            url: process.env.REACT_APP_API_URL + "Dashboard/GetVisitingData",
+            headers: {
+                "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
+            },
+        };
+        axios(config).then(function (response) {
+            if (response.status == 200) {
+                setVisitList(response.data);
+                console.log(response.data)
+            }
+        });
+    }
     const columns = [
         {
             name: "Date",
@@ -29,27 +33,66 @@ const VisitList = (props) => {
         },
         {
             name: "Trainer Name",
-            selector: row => row.trainer
+            selector: row => row.trainerName
         },
         {
             name: "Attendees",
-            selector: row => row.attendees
+            selector: row => row.attending
         },
         {
             name: "User Type"
         },
         {
             name: "Rate",
-            selector: row => row.attendees == 1 ? (<>
-                <span className="active"><MdStarRate /></span><MdStarRate /><MdStarRate /><MdStarRate /><MdStarRate />
-            </>) : (row.attendees == 2 ? (
-                <><MdStarRate /><MdStarRate /><MdStarRate /><MdStarRate /><MdStarRate />
-                    </>) : (<><span className="active"><MdStarRate /><MdStarRate /><MdStarRate /><MdStarRate /><MdStarRate /></span></>))
+            selector: row =>
+                row.rating == 1 ? (<>
+                    <span className="active">
+                        <MdStarRate />
+                    </span>
+                    <MdStarRate />
+                    <MdStarRate />
+                    <MdStarRate />
+                    <MdStarRate />
+                </>) :
+                    row.rating == 2 ? (
+                        <>
+                            <span className="active">
+                                <MdStarRate />
+                                <MdStarRate />
+                            </span>
+                            <MdStarRate />
+                            <MdStarRate />
+                            <MdStarRate />
+                        </>) :
+                        row.rating == 3 ? (
+                            <>
+                                <span className="active">
+                                    <MdStarRate />
+                                    <MdStarRate />
+                                    <MdStarRate />
+                                </span>
+                                <MdStarRate />
+                                <MdStarRate />
+                            </>) :
+                            row.rating == 4 ? (
+                                <>
+                                    <span className="active">
+                                        <MdStarRate />
+                                        <MdStarRate />
+                                        <MdStarRate />
+                                        <MdStarRate />
+                                    </span>
+                                    <MdStarRate />
+                                </>) : (<><span className="active"><MdStarRate /><MdStarRate /><MdStarRate /><MdStarRate /><MdStarRate /></span></>)
         },
     ]
+
+    useEffect(() => (
+        getVisitList()
+    ), [])
     return (
         <>
-            <div className="card">
+            <div className="card visiting-list">
                 <div className="card-header">
                     <h3 className="card-title">Visting List</h3>
                 </div>

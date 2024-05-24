@@ -401,4 +401,31 @@ position: absolute;
 
 .graph-box-list{
   padding: 0;
+      height: 440px;
+      overflow: hidden;
 }
+.visiting-list{
+  border: 0;
+}
+.visiting-list .card-header{
+  background-color: transparent;
+    border-bottom: 0 !important;
+}
+.visiting-list .card-body{
+  padding: 10px 15px
+}
+.visiting-list .rdt_TableHeadRow{
+  background-color: #D9F1FF!important;
+  font-size: 16px;
+    border-bottom: 0 !important;
+}
+
+.visiting-list .rdt_TableRow{
+    font-size: 14px;
+    border-bottom: 0!important;
+}
+.visiting-list .rdt_TableRow:nth-child(even) {
+  background-color: #F0F8FD;
+  border-radius: 5px;
+}
+
