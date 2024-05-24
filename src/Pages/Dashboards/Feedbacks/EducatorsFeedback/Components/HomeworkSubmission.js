@@ -2,15 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
-const Pie = (props) => {
-  const [stars, setStars] = useState([0, 0, 0, 0, 0]);
+const HomeworkSubmission = (props) => {
+  const [stars, setStars] = useState([]);
 
   const getStars = () => {
     var config = {
       method: "get",
       url:
         process.env.REACT_APP_API_URL +
-        "Dashboard/GetStarRating/" +
+        "Dashboard/GetEducatorStarRating/" +
         props.parameters,
       headers: {
         "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
@@ -19,8 +19,7 @@ const Pie = (props) => {
     };
     axios(config).then(function (response) {
       if (response.status == 200) {
-        console.log(response.data);
-        setStars(response.data);
+        setStars(response.data.homeworkSumbisison);
       }
     });
   };
@@ -85,4 +84,4 @@ const Pie = (props) => {
   );
 };
 
-export default Pie;
+export default HomeworkSubmission;
