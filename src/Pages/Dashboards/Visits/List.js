@@ -12,6 +12,7 @@ import greyStar from "../../../images/visit/greyStar.png";
 import parents from "../../../images/visit/parent.png";
 const VisitList = (props) => {
     const [visitList, setVisitList] = useState([])
+    const [selectedInsight, setSelectedInsight] = useState("")
     const [show, setShow] = useState(false)
     const getVisitList = () => {
         var config = {
@@ -49,26 +50,34 @@ const VisitList = (props) => {
             name: "User Type",
             selector: row => (
                 <>
-                    {row.studentCount > 0 && (
-                        <OverlayTrigger overlay={<Tooltip id="Student">Student</Tooltip>}>
-                            <img src={student} />
-                        </OverlayTrigger>
-                    )}
-                    {row.teacherCount > 0 && (
-                        <OverlayTrigger overlay={<Tooltip id="Teacher">Teacher</Tooltip>}>
-                            <img src={teacher} />
-                        </OverlayTrigger>
-                    )}
-                    {row.sltCount > 0 && (
-                        <OverlayTrigger overlay={<Tooltip id="Slt">Slt</Tooltip>}>
-                            <img src={slt} />
-                        </OverlayTrigger>
-                    )}
-                    {row.parentCount > 0 && (
-                        <OverlayTrigger overlay={<Tooltip id="Parent">Parent</Tooltip>}>
-                            <img src={parents} />
-                        </OverlayTrigger>
-                    )}
+                    <span className="mr-1">
+                        {row.studentCount > 0 && (
+                            <OverlayTrigger overlay={<Tooltip id="Student">Student</Tooltip>}>
+                                <img src={student} />
+                            </OverlayTrigger>
+                        )}
+                    </span>
+                    <span className="mr-1">
+                        {row.teacherCount > 0 && (
+                            <OverlayTrigger overlay={<Tooltip id="Teacher">Teacher</Tooltip>}>
+                                <img src={teacher} />
+                            </OverlayTrigger>
+                        )}
+                    </span>
+                    <span className="mr-1">
+                        {row.sltCount > 0 && (
+                            <OverlayTrigger overlay={<Tooltip id="Slt">Slt</Tooltip>}>
+                                <img src={slt} />
+                            </OverlayTrigger>
+                        )}
+                    </span>
+                    <span className="mr-1">
+                        {row.parentCount > 0 && (
+                            <OverlayTrigger overlay={<Tooltip id="Parent">Parent</Tooltip>}>
+                                <img src={parents} />
+                            </OverlayTrigger>
+                        )}
+                    </span>
                 </>
             )
 
@@ -125,7 +134,8 @@ const VisitList = (props) => {
         },
     ]
 
-    const showPopUp = () => {
+    const showPopUp = (row) => {
+        setSelectedInsight(row.insights)
         setShow(true)
     }
 
@@ -143,20 +153,15 @@ const VisitList = (props) => {
                         columns={columns}
                         data={visitList}
                         pointerOnHover
-                        onRowClicked={() => showPopUp()}
-                         />
-                    <Modal show={show} onHide={() => setShow(false)}>
+                        onRowClicked={(e) => showPopUp(e)}
+                    />
+                    <Modal show={show} onHide={() => setShow(false)} size="lg">
                         <Modal.Header closeButton>
                             <Modal.Title>Insights</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <h4>Trainer Insights</h4>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                            </p>
-                            <h4 className="mt-10">Anecdotal Findings</h4>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                {selectedInsight}
                             </p>
                         </Modal.Body>
                         <Modal.Footer>

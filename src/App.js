@@ -30,6 +30,7 @@ import TrainingFeedback from "./Pages/Dashboards/Feedbacks/TraningFeedback/Train
 import VisitList from "./Pages/Dashboards/Visits/List";
 import VisitCounts from "./Pages/Dashboards/Visits/Components/VisitCounts";
 import TraningCounts from "./Pages/Dashboards/Visits/Components/TraningCounts";
+import VisitCounters from "./Pages/Dashboards/Visits/Counts";
 function App() {
   const [tab, setTab] = useState(1);
   const [tabb, setTabb] = useState(1);
@@ -453,7 +454,7 @@ function App() {
                   className={tabCounts == 2 ? "col-md-6 tab active" : "col-md-6 tab"}
                   onClick={() => setTabCounts(2)}
                 >
-                  Traning Counts
+                  Training Counts
                 </div>
               </div>
             </div>
@@ -466,6 +467,9 @@ function App() {
             </div>
           </div>
           <div className="col-md-6 mb-3">
+            <div className="garph-box">
+                <VisitCounters parameters={parameters}/>
+            </div>
             <div className="graph-box graph-box-list">
               <VisitList parameters={parameters} />
             </div>
@@ -493,7 +497,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="graph-box mt-35">
+            <div className="graph-box mt-45">
               {tabb == 1 && <StudentFeedback parameters={parameters} />}
               {tabb == 2 && <EducatorsFeedback parameters={parameters} />}
               {tabb == 3 && <TrainingFeedback parameters={parameters} />}
