@@ -49,7 +49,7 @@ const GradeActivityPercentage = (props) => {
     },
   ];
 
-  const options1 = {
+  const options = {
     chart: {
       toolbar: {
         show: false,
@@ -64,11 +64,12 @@ const GradeActivityPercentage = (props) => {
         endingShape: "rounded",
       },
     },
-    legend: {
-      show: false,
-    },
     dataLabels: {
-      enabled: false,
+      enabled: true,
+      style: {
+        fontSize: "12px",
+        colors: ["#fff"],
+      },
     },
     stroke: {
       show: true,
@@ -102,7 +103,7 @@ const GradeActivityPercentage = (props) => {
     <>
       <ReactApexChart
         type="bar"
-        options={options1}
+        options={options}
         series={series}
         height={350}
       />

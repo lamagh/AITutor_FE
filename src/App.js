@@ -27,9 +27,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import EducatorsFeedback from "./Pages/Dashboards/Feedbacks/EducatorsFeedback/EducatorsFeedback";
 import TrainingFeedback from "./Pages/Dashboards/Feedbacks/TraningFeedback/TrainingFeedback";
+import VisitList from "./Pages/Dashboards/Visits/List";
+import VisitCounts from "./Pages/Dashboards/Visits/Components/VisitCounts";
+import TraningCounts from "./Pages/Dashboards/Visits/Components/TraningCounts";
 function App() {
   const [tab, setTab] = useState(1);
   const [tabb, setTabb] = useState(1);
+  const [tabCounts, setTabCounts] = useState(1);
   const [schoolTypes, setSchoolTypes] = useState([]);
   const [countries, setCountries] = useState([]);
   const [schools, setSchool] = useState([]);
@@ -464,14 +468,35 @@ function App() {
               )}
             </div>
           </div>
-          <div className="col-md-6 mb-3">
-            <div className="graph-box mb-3">
-              <MostTopicSearched parameters={parameters} />
+          <div className="col-md-6 mb-3 p-relative">
+            <div className="graph-box-tabs">
+              <div className="row m-0">
+                <div
+                  className={tabCounts == 1 ? "col-md-6 tab active" : "col-md-6 tab"}
+                  onClick={() => setTabCounts(1)}
+                >
+                  Visit Counts
+                </div>
+                {/* <div className='col-md-2'></div> */}
+                <div
+                  className={tabCounts == 2 ? "col-md-6 tab active" : "col-md-6 tab"}
+                  onClick={() => setTabCounts(2)}
+                >
+                  Traning Counts
+                </div>
+              </div>
+            </div>
+            <div className="graph-box mt-4">
+              {tabCounts == 1 ? (
+                <VisitCounts parameters={parameters} />
+              ) : (
+                <TraningCounts parameters={parameters} />
+              )}
             </div>
           </div>
           <div className="col-md-6 mb-3">
-            <div className="graph-box">
-              <AITutorResponses parameters={parameters} />
+            <div className="graph-box graph-box-list">
+              <VisitList parameters={parameters} />
             </div>
           </div>
           <div className="col-md-12 mb-3 p-relative">

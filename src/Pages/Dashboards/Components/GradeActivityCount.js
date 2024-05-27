@@ -60,10 +60,19 @@ const GradeActivityCount = (props) => {
         horizontal: false,
         columnWidth: "55%",
         endingShape: "rounded",
+        borderRadius: 10,
+        borderRadiusApplication: "end",
+        dataLabels: {
+          position: "center", // top, center, bottom
+        },
       },
     },
     dataLabels: {
-      enabled: false,
+      enabled: true,
+      style: {
+        fontSize: "12px",
+        colors: ["#fff"],
+      },
     },
     stroke: {
       show: true,
@@ -72,6 +81,11 @@ const GradeActivityCount = (props) => {
     },
     xaxis: {
       categories: gradeNumbersLabels,
+      labels: {
+        style: {
+          cssClass: "axisText",
+        },
+      },
     },
     yaxis: {
       show: false,
@@ -80,14 +94,22 @@ const GradeActivityCount = (props) => {
       opacity: 1,
       colors: ["#05BC86", "#84D4BD"],
     },
-    legend: {
-      show: false,
-    },
     tooltip: {
       y: {
         formatter: function (val) {
           return val;
         },
+      },
+    },
+    legend: {
+      show: true,
+      fontSize: "14px",
+      fontFamily: "Roboto, sans-serif",
+      fontWeight: 700,
+      markers: {
+        width: 12,
+        height: 12,
+        radius: 12,
       },
     },
   };
