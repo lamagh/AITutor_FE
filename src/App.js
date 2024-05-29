@@ -326,22 +326,22 @@ function App() {
                 {showDateList && (
                   <ul className="date-list">
                     <li>
-                      <button className="" onClick={() => handleSetDate(1)}>
+                      <button className="" onClick={() => { handleSetDate(1); handleDateList()}}>
                         Today
                       </button>
                     </li>
                     <li className="odd">
-                      <button className="" onClick={() => handleSetDate(7)}>
+                      <button className="" onClick={() => {handleSetDate(7);handleDateList()}}>
                         Weekly
                       </button>
                     </li>
                     <li>
-                      <button className="" onClick={() => handleSetDate(30)}>
+                      <button className="" onClick={() => { handleSetDate(30); handleDateList() }}>
                         Monthly
                       </button>
                     </li>
                     <li className="odd">
-                      <button className="" onClick={() => handleSetDate(365)}>
+                      <button className="" onClick={() => { handleSetDate(365); handleDateList() }}>
                         Yearly
                       </button>
                     </li>

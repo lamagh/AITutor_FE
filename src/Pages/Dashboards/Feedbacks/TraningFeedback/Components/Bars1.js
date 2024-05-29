@@ -18,6 +18,7 @@ const Bars1 = (props) => {
         };
         axios(config).then(function (response) {
             if (response.status == 200) {
+                console.log(response.data)
                 setEvaluationsNumbers(response.data);
                 setLoading(false)
             }
