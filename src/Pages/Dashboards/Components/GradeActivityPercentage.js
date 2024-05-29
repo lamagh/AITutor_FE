@@ -93,6 +93,9 @@ const GradeActivityPercentage = (props) => {
         },
       },
     },
+    legend: {
+      show: false,
+    },
   };
 
   useEffect(() => {

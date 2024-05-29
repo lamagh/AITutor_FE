@@ -102,7 +102,7 @@ const GradeActivityCount = (props) => {
       },
     },
     legend: {
-      show: true,
+      show: false,
       fontSize: "14px",
       fontFamily: "Roboto, sans-serif",
       fontWeight: 700,

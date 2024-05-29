@@ -4,7 +4,7 @@ import CountSessionByDate from "./Pages/Dashboards/Components/CountSessionByDate
 import MostTopicSearched from "./Pages/Dashboards/Components/MostTopicSearched";
 import GradeActivityPercentage from "./Pages/Dashboards/Components/GradeActivityPercentage";
 import Menu from "./Layout/Menu";
-
+import moment from "moment";
 import totalStudentsImg from "./images/Counters/TotalStudents.png";
 import ndaImg from "./images/Counters/nda.png";
 import loginImg from "./images/Counters/login.png";
@@ -48,6 +48,8 @@ function App() {
   });
 
   const [parameters, setParameter] = useState("");
+
+  const [parametersWithDate, setParameterWithDate] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState(0);
   const [selectedSchool, setSelectedSchool] = useState(0);
   const [selectedSchoolType, setSchoolType] = useState(0);
@@ -62,54 +64,83 @@ function App() {
     }
   };
   const [selectedDateTitle, setSelectedDateTitle] = useState("");
-  const [selectedDate, setSelectedDate] = useState([]);
+
+  const [filterType, setFilterType] = useState(1);
+
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+
+  useEffect(() => {
+    console.log("start date", startDate);
+  }, [startDate]);
+
   const handleSetDate = (date) => {
     switch (date) {
       case 1:
         setSelectedDateTitle("Today");
-        setSelectedDate();
+        setStartDate(new moment());
+        setEndDate(new moment().add(1, "days"));
+        setFilterType(0);
         break;
       case 7:
         setSelectedDateTitle("This Week");
-        setSelectedDate();
+        setStartDate(new moment());
+        //subtract seven days from today
+        setEndDate(new moment().subtract(7, "days"));
+        setFilterType(0);
         break;
       case 30:
         setSelectedDateTitle("This Month");
-        setSelectedDate();
+        //set start date to first day of the month
+        setStartDate(new moment().startOf("month"));
+        setEndDate(new moment().endOf("month"));
+        setFilterType(0);
         break;
       case 365:
         setSelectedDateTitle("Past Year");
-        setSelectedDate();
+        //set start date to first day of the year
+        setStartDate(new moment().startOf("year"));
+        setEndDate(new moment().endOf("year"));
+        setFilterType(1);
         break;
     }
-
+    applyFilter();
     //handleDateList();
   };
   const applyFilter = () => {
     var param = "";
     if (selectedDistrict != 0) {
-      if (param == "") {
-        param = "?Emirates=" + selectedDistrict;
-      } else {
-        param = param + "&Emirates=" + selectedDistrict;
-      }
+      param =
+        param + (param == "" ? "?" : "&") + "Emirates=" + selectedDistrict;
     }
     if (selectedSchool != 0) {
-      if (param == "") {
-        param = "?SchoolId=" + selectedSchool;
-      } else {
-        param = param + "&SchoolId=" + selectedSchool;
-      }
+      param = param + (param == "" ? "?" : "&") + "SchoolId=" + selectedSchool;
     }
     if (selectedSchoolType != 0) {
-      if (param == "") {
-        param = "?SchoolType=" + selectedSchoolType;
-      } else {
-        param = param + "&SchoolType=" + selectedSchoolType;
-      }
+      param =
+        param + (param == "" ? "?" : "&") + "SchoolType=" + selectedSchoolType;
     }
 
+    var ParamDate = "";
+    if (startDate) {
+      ParamDate =
+        ParamDate +
+        (ParamDate == "" ? "?" : "&") +
+        "startDate=" +
+        startDate.format("YYYY-MM-DD");
+    }
+    if (endDate) {
+      ParamDate =
+        ParamDate +
+        (ParamDate == "" ? "?" : "&") +
+        "endDate=" +
+        endDate.format("YYYY-MM-DD");
+    }
+
+    console.log(param);
+    console.log(ParamDate);
     setParameter(param);
+    setParameterWithDate(ParamDate);
   };
 
   const getHeaderNumbers = () => {
@@ -440,7 +471,7 @@ function App() {
           </div>
           <div className="col-md-6 mb-3 ">
             <div className="graph-box">
-              <CountSessionByDate parameters={parameters} />
+              <CountSessionByDate parameters={parametersWithDate} />
             </div>
           </div>
           <div className="col-md-6 mb-3 p-relative">
@@ -473,14 +504,18 @@ function App() {
             <div className="graph-box-tabs">
               <div className="row m-0">
                 <div
-                  className={tabCounts == 1 ? "col-md-6 tab active" : "col-md-6 tab"}
+                  className={
+                    tabCounts == 1 ? "col-md-6 tab active" : "col-md-6 tab"
+                  }
                   onClick={() => setTabCounts(1)}
                 >
                   Visit Counts
                 </div>
                 {/* <div className='col-md-2'></div> */}
                 <div
-                  className={tabCounts == 2 ? "col-md-6 tab active" : "col-md-6 tab"}
+                  className={
+                    tabCounts == 2 ? "col-md-6 tab active" : "col-md-6 tab"
+                  }
                   onClick={() => setTabCounts(2)}
                 >
                   Training Counts
@@ -489,15 +524,18 @@ function App() {
             </div>
             <div className="graph-box mt-4">
               {tabCounts == 1 ? (
-                <VisitCounts parameters={parameters} />
+                <VisitCounts parameters={parameters} filterType={filterType} />
               ) : (
-                <TraningCounts parameters={parameters} />
+                <TraningCounts
+                  parameters={parameters}
+                  filterType={filterType}
+                />
               )}
             </div>
           </div>
           <div className="col-md-6 mb-3">
             <div className="garph-box">
-                <VisitCounters parameters={parameters}/>
+              <VisitCounters parameters={parameters} />
             </div>
             <div className="graph-box graph-box-list">
               <VisitList parameters={parameters} />

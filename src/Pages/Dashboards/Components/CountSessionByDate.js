@@ -8,7 +8,7 @@ const CountSessionByDate = (props) => {
       method: "get",
       url:
         process.env.REACT_APP_API_URL +
-        "Dashboard/GetLoginCount/" +
+        "Dashboard/GetLoginCount" +
         props.parameters,
       headers: {
         "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
