@@ -58,7 +58,7 @@ const VisitCounters = () => {
                             </div>
                             <div className="counter-info">
                                 <h5>Avg Rating</h5>
-                                <p>{visitCounts.averageRating}</p>
+                                <p>{visitCounts.averageRating.toFixed(0)}</p>
                             </div>
                         </div>
                     </div>
