@@ -154,6 +154,8 @@ const VisitList = (props) => {
                         data={visitList}
                         pointerOnHover
                         onRowClicked={(e) => showPopUp(e)}
+                        fixedHeaderScrollHeight={"250px"}
+                        fixedHeader={true}
                     />
                     <Modal show={show} onHide={() => setShow(false)} size="lg">
                         <Modal.Header closeButton>
