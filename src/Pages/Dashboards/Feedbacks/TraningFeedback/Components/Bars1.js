@@ -5,13 +5,13 @@ import ReactApexChart from "react-apexcharts";
 const Bars1 = (props) => {
     const [loading, setLoading] = useState(true)
     const [evaluationsNumbers, setEvaluationsNumbers] = useState({
-        easyToNavigate: [0, 0, 0, 0, 0],
-        evaluationsNumbers: [0, 0, 0, 0, 0]
+        excited: [0, 0, 0, 0, 0],
+        confident: [0, 0, 0, 0, 0]
     })
     const getEvaluationsNumbers = () => {
         var config = {
             method: "get",
-            url: process.env.REACT_APP_API_URL + "Dashboard/GetEducatorUserFriendly/" + props.parameters,
+            url: process.env.REACT_APP_API_URL + "Dashboard/GetExcitedTraining/" + props.parameters,
             headers: {
                 "Access-Control-Allow-Origin": process.env.REACT_APP_Host,
             },
@@ -26,22 +26,22 @@ const Bars1 = (props) => {
     }
     var series = [{
         name: "Not at all",
-        data: [evaluationsNumbers.easyToNavigate != null && evaluationsNumbers.easyToNavigate[0], evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[0]]
+        data: [evaluationsNumbers.excited != null && evaluationsNumbers.excited[0], evaluationsNumbers.confident != null && evaluationsNumbers.confident[0]]
     }, {
         name: "Slightly",
-        data: [evaluationsNumbers.easyToNavigate != null && evaluationsNumbers.easyToNavigate[1], evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[1]]
+        data: [evaluationsNumbers.excited != null && evaluationsNumbers.excited[1], evaluationsNumbers.confident != null && evaluationsNumbers.confident[1]]
     },
     {
         name: "Somewhat",
-        data: [evaluationsNumbers.easyToNavigate != null && evaluationsNumbers.easyToNavigate[2], evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[2]]
+        data: [evaluationsNumbers.excited != null && evaluationsNumbers.excited[2], evaluationsNumbers.confident != null && evaluationsNumbers.confident[2]]
     },
     {
         name: "Very",
-        data: [evaluationsNumbers.easyToNavigate != null && evaluationsNumbers.easyToNavigate[3], evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[3]]
+        data: [evaluationsNumbers.excited != null && evaluationsNumbers.excited[3], evaluationsNumbers.confident != null && evaluationsNumbers.confident[3]]
     },
     {
         name: "Extremely",
-        data: [evaluationsNumbers.easyToNavigate != null && evaluationsNumbers.easyToNavigate[4], evaluationsNumbers.easyToUse != null && evaluationsNumbers.easyToUse[4]]
+        data: [evaluationsNumbers.excited != null && evaluationsNumbers.excited[4], evaluationsNumbers.confident != null && evaluationsNumbers.confident[4]]
     }]
     const options = {
         plotOptions: {
